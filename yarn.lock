@@ -550,6 +550,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/geojson@npm:*":
+  version: 7946.0.16
+  resolution: "@types/geojson@npm:7946.0.16"
+  checksum: 10c0/1ff24a288bd5860b766b073ead337d31d73bdc715e5b50a2cee5cb0af57a1ed02cc04ef295f5fa68dc40fe3e4f104dd31282b2b818a5ba3231bc1001ba084e3c
+  languageName: node
+  linkType: hard
+
 "@types/json-schema@npm:^7.0.15":
   version: 7.0.15
   resolution: "@types/json-schema@npm:7.0.15"
@@ -561,6 +568,15 @@ __metadata:
   version: 0.0.29
   resolution: "@types/json5@npm:0.0.29"
   checksum: 10c0/6bf5337bc447b706bb5b4431d37686aa2ea6d07cfd6f79cc31de80170d6ff9b1c7384a9c0ccbc45b3f512bae9e9f75c2e12109806a15331dc94e8a8db6dbb4ac
+  languageName: node
+  linkType: hard
+
+"@types/navermaps@npm:^3.7.8":
+  version: 3.7.8
+  resolution: "@types/navermaps@npm:3.7.8"
+  dependencies:
+    "@types/geojson": "npm:*"
+  checksum: 10c0/833040558aade681f190dd703833cf978ca5e0cb5791a26d85a358a4bdda4d5521930f4bfcf94c1884548a00a5ef9ee2732cfe4fb941b50836cbbf37d72b023e
   languageName: node
   linkType: hard
 
@@ -3808,6 +3824,7 @@ __metadata:
   resolution: "smoke-zone@workspace:."
   dependencies:
     "@eslint/eslintrc": "npm:^3"
+    "@types/navermaps": "npm:^3.7.8"
     "@types/node": "npm:^20"
     "@types/react": "npm:^19"
     "@types/react-dom": "npm:^19"

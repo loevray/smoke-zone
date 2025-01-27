@@ -28,6 +28,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./",\
         "packageDependencies": [\
           ["@eslint/eslintrc", "npm:3.2.0"],\
+          ["@types/navermaps", "npm:3.7.8"],\
           ["@types/node", "npm:20.17.16"],\
           ["@types/react", "npm:19.0.8"],\
           ["@types/react-dom", "virtual:38c485b8a35a143c6c3152348d317bb80a0d21af8eade703e5423f853fccbea55219a363836bf880036ef3b7051fd6f96dc5288248a4f4679e7e27b32d8ffdac#npm:19.0.3"],\
@@ -682,6 +683,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@types/geojson", [\
+      ["npm:7946.0.16", {\
+        "packageLocation": "../../../C:/Users/5389b/AppData/Local/Yarn/Berry/cache/@types-geojson-npm-7946.0.16-7a73d95991-10c0.zip/node_modules/@types/geojson/",\
+        "packageDependencies": [\
+          ["@types/geojson", "npm:7946.0.16"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@types/json-schema", [\
       ["npm:7.0.15", {\
         "packageLocation": "../../../C:/Users/5389b/AppData/Local/Yarn/Berry/cache/@types-json-schema-npm-7.0.15-fd16381786-10c0.zip/node_modules/@types/json-schema/",\
@@ -696,6 +706,16 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../C:/Users/5389b/AppData/Local/Yarn/Berry/cache/@types-json5-npm-0.0.29-f63a7916bd-10c0.zip/node_modules/@types/json5/",\
         "packageDependencies": [\
           ["@types/json5", "npm:0.0.29"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/navermaps", [\
+      ["npm:3.7.8", {\
+        "packageLocation": "../../../C:/Users/5389b/AppData/Local/Yarn/Berry/cache/@types-navermaps-npm-3.7.8-4cf7b14fae-10c0.zip/node_modules/@types/navermaps/",\
+        "packageDependencies": [\
+          ["@types/navermaps", "npm:3.7.8"],\
+          ["@types/geojson", "npm:7946.0.16"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -4503,6 +4523,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["smoke-zone", "workspace:."],\
           ["@eslint/eslintrc", "npm:3.2.0"],\
+          ["@types/navermaps", "npm:3.7.8"],\
           ["@types/node", "npm:20.17.16"],\
           ["@types/react", "npm:19.0.8"],\
           ["@types/react-dom", "virtual:38c485b8a35a143c6c3152348d317bb80a0d21af8eade703e5423f853fccbea55219a363836bf880036ef3b7051fd6f96dc5288248a4f4679e7e27b32d8ffdac#npm:19.0.3"],\
