@@ -4,9 +4,16 @@ import Map from "./_map/map";
 import { MapLanguages } from "./types/map";
 
 export default function Home() {
-  const [language, setLanguage] = useState<MapLanguages>("ko");
+  const mappedLanguage: MapLanguages = {
+    ko: "한국어",
+    en: "English",
+    ja: "日本語",
+    zh: "Deutsch",
+  };
 
-  const handleLanguageChange = (lang: MapLanguages) => {
+  const [language, setLanguage] = useState<keyof MapLanguages>("ko");
+
+  const handleLanguageChange = (lang: keyof MapLanguages) => {
     console.log(lang);
     setLanguage(lang);
   };
@@ -19,14 +26,15 @@ export default function Home() {
         name="mapLanguages"
         onChange={(
           e: ChangeEvent<HTMLSelectElement> & {
-            target: { value: MapLanguages };
+            target: { value: keyof MapLanguages };
           }
         ) => handleLanguageChange(e.target.value)}
       >
-        <option value="ko">한국어</option>
-        <option value="en">English</option>
-        <option value="ja">日本語</option>
-        <option value="zh">Deutsch</option>
+        {Object.entries(mappedLanguage).map(([key, value]) => (
+          <option key={key} value={key}>
+            {value}
+          </option>
+        ))}
       </select>
       <Map language={language} />
     </div>

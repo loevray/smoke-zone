@@ -13,7 +13,11 @@ const markers: naver.maps.Marker[] = [];
   2. 해당 자치행정구역의 흡연구역 정보를 로딩한다.
 */
 
-export default function Map({ language = "ko" }: { language?: MapLanguages }) {
+export default function Map({
+  language = "ko",
+}: {
+  language?: keyof MapLanguages;
+}) {
   const mapRef = useRef<NaverMap>(undefined);
 
   const generateMarkers = useCallback(() => {
