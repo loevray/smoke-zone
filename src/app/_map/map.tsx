@@ -21,15 +21,15 @@ export default function Map({
   const mapRef = useRef<NaverMap>(undefined);
 
   const generateMarkers = useCallback(() => {
-    new window.naver.maps.Marker({
-      position: new window.naver.maps.LatLng([127, 0]),
+    new naver.maps.Marker({
+      position: new naver.maps.LatLng([127.0513664, 37.7421824]),
       map: mapRef.current,
-      icon: {
+      /*       icon: {
         url: "",
         size: new naver.maps.Size(43, 43),
         scaledSize: new naver.maps.Size(43, 43),
       },
-      zIndex: 999,
+      zIndex: 999, */
     });
   }, [language]);
 
@@ -40,27 +40,28 @@ export default function Map({
         return;
       }
 
+      /* 
+        사용자 현재 위치 갱신시 지도 중심 갱신
+      */
       mapRef.current.setCenter(
-        new window.naver.maps.LatLng([
+        new naver.maps.LatLng([
           position.coords.longitude,
           position.coords.latitude,
         ])
       );
     },
-    defaultLocation: DEFAULT_LOC_GANGNAM_STATION,
   });
 
   const initializeMap = useCallback(() => {
     const mapOptions = {
-      center: new window.naver.maps.LatLng(location),
-      zoom: 15,
+      zoom: 17,
       scaleControl: true,
       mapDataControl: true,
       logoControlOptions: {
         position: naver.maps.Position.BOTTOM_LEFT,
       },
     };
-    const map = new window.naver.maps.Map(mapId, mapOptions);
+    const map = new naver.maps.Map(mapId, mapOptions);
     mapRef.current = map;
   }, [location, language]);
 
@@ -81,7 +82,10 @@ export default function Map({
     script.type = "text/javascript";
     script.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}&language=${language}`;
     document.body.appendChild(script);
-    script.onload = () => initializeMap();
+    script.onload = () => {
+      initializeMap();
+      generateMarkers();
+    };
   };
 
   useEffect(() => {
@@ -96,8 +100,15 @@ export default function Map({
     <>
       <div id={mapId} className="w-screen h-screen" />
       <button
-        className="absolute top-2 right-2 border text-xl leading-none bg-white rounded-full border-black size-6"
-        onClick={() => updateLocation()}
+        disabled={location.isLoading}
+        className={`absolute flex items-center justify-center top-2 right-2 border text-3xl leading-none  bg-white text-black rounded-full border-black size-8
+          ${
+            location.isLoading
+              ? "opacity-60 cursor-not-allowed animate-spin"
+              : ""
+          }
+          `}
+        onClick={updateLocation}
       >
         + {/* 현재 위치 업데이트 버튼 */}
       </button>
