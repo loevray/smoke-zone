@@ -2,15 +2,9 @@
 import { ChangeEvent, useState } from "react";
 import Map from "./_map/map";
 import { MapLanguages } from "./types/map";
+import { mappedLanguage } from "./constant/map";
 
 export default function Home() {
-  const mappedLanguage: MapLanguages = {
-    ko: "한국어",
-    en: "English",
-    ja: "日本語",
-    zh: "Deutsch",
-  };
-
   const [language, setLanguage] = useState<keyof MapLanguages>("ko");
 
   const handleLanguageChange = (lang: keyof MapLanguages) => {
