@@ -1,8 +1,8 @@
 "use client";
 import { ChangeEvent, useState } from "react";
 import Map from "./_map/map";
-import { MapLanguages } from "./types/map";
-import { mappedLanguage } from "./constant/map";
+import { MapLanguages } from "../types/map";
+import { mappedLanguage } from "../constant/map";
 
 export default function Home() {
   const [language, setLanguage] = useState<keyof MapLanguages>("ko");

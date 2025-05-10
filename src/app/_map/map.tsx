@@ -1,16 +1,16 @@
 "use client";
 
-import { Coordinates, MapLanguages, NaverMap } from "@/app/types/map";
+import { Coordinates, MapLanguages, NaverMap } from "@/types/map";
 import { useCallback, useEffect, useRef } from "react";
-import useGeolocation from "../hooks/useGeolocation";
+import useGeolocation from "../../hooks/useGeolocation";
+import smokeZoneDummyData from "../../constant/smokeZoneData";
 
-const mapId = "naver-map";
+const MAP_ID = "naver-map";
 const DEFAULT_LOC_GANGNAM_STATION: Coordinates = [127.028, 37.498];
 const markers: naver.maps.Marker[] = [];
 
 /* 
-  1. 현재 위도/경도를 이용해 현재 어떤 자치행정구역인지 알아낸다.
-  2. 해당 자치행정구역의 흡연구역 정보를 로딩한다.
+  현재 위치 반경 흡연구역만 로드?
 */
 
 export default function Map({
@@ -21,16 +21,20 @@ export default function Map({
   const mapRef = useRef<NaverMap>(undefined);
 
   const generateMarkers = useCallback(() => {
-    new naver.maps.Marker({
-      position: new naver.maps.LatLng([127.0513664, 37.7421824]),
-      map: mapRef.current,
-      /*       icon: {
-        url: "",
-        size: new naver.maps.Size(43, 43),
-        scaledSize: new naver.maps.Size(43, 43),
-      },
-      zIndex: 999, */
+    smokeZoneDummyData.forEach(({ latitude, longitude }) => {
+      new naver.maps.Marker({
+        position: new naver.maps.LatLng([longitude, latitude]),
+        map: mapRef.current,
+        /*       icon: {
+          url: "",
+          size: new naver.maps.Size(43, 43),
+          scaledSize: new naver.maps.Size(43, 43),
+        },
+        zIndex: 999, */
+      });
     });
+
+    console.log("generateMarkers 실행됨");
   }, [language]);
 
   const { location, updateLocation } = useGeolocation({
@@ -61,7 +65,7 @@ export default function Map({
         position: naver.maps.Position.BOTTOM_LEFT,
       },
     };
-    const map = new naver.maps.Map(mapId, mapOptions);
+    const map = new naver.maps.Map(MAP_ID, mapOptions);
     mapRef.current = map;
   }, [location, language]);
 
@@ -83,6 +87,7 @@ export default function Map({
     script.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}&language=${language}`;
     document.body.appendChild(script);
     script.onload = () => {
+      console.log("naver map script loaded");
       initializeMap();
       generateMarkers();
     };
@@ -98,7 +103,7 @@ export default function Map({
 
   return (
     <>
-      <div id={mapId} className="w-screen h-screen" />
+      <div id={MAP_ID} className="w-screen h-screen" />
       <button
         disabled={location.isLoading}
         className={`absolute flex items-center justify-center top-2 right-2 border text-3xl leading-none  bg-white text-black rounded-full border-black size-8
